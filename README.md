@@ -9,6 +9,7 @@
 
 ## v4
 
+* http://y-kit.jp/inet/page/ipaddress.htm
 * http://www.nic.ad.jp/ja/translation/rfc/1466.html
 * http://ja.wikipedia.org/wiki/IPv4
 * http://www1.cts.ne.jp/~clab/hsample/Bit/Bit3.html
