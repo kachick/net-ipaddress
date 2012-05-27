@@ -1,17 +1,20 @@
 # Copyright (c) 2012 Kenichi Kamiya
 
-module Net
+module ::Net::IPAddress
 
-  class IPv4Address
+  class Version4
     
-    include IPAddress
+    include Net::IPAddress
     
-    OCTETS_DELIMITER = '.'.freeze
-    ROLE_DELIMITER   = '/'.freeze
+    DELIMITER = '.'.freeze
+    
+    # It's clearly to build below octets pattern with Tanaka Akira Specal.
+    # e.g. /(?:(?<octet>25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}\g<octet>/
+    # But this way occur a error, for after building other patterns with this Regexp object :<
     octet_rxp_str = '(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)'
     OCTETS_PATTERN = 
       /\b
-       (?:#{octet_rxp_str}#{Regexp.escape OCTETS_DELIMITER}){3} # 0~255.0~255.0~255.
+       (?:#{octet_rxp_str}#{Regexp.escape DELIMITER}){3} # 0~255.0~255.0~255.
        #{octet_rxp_str}                                  # 0~255
        \b/x
 
@@ -23,7 +26,7 @@ module Net
     PATTERN = 
       /\b
        (?<octets>#{OCTETS_PATTERN})
-       (?:#{Regexp.escape ROLE_DELIMITER}#{MASK_PATTERN})?
+       (?:#{Regexp.escape MASK_SEPARATOR}#{MASK_PATTERN})?
        \b/x
     
     # Regural masks for "prefix", and they are frozen.
@@ -84,22 +87,9 @@ module Net
       private
 
       def octets_for(str)
-        str.split(OCTETS_DELIMITER).map(&:to_i)
+        str.split(DELIMITER).map(&:to_i)
       end
 
-    end
-    
-    # Called "octets" is expected a FixedArray the 4 length,
-    # that's members 0~255 Fixnum.
-    # And the "mask_octets" is same format with the octets.
-    # @example
-    #   octets: [192, 168, 1, 1]
-    #   mask_octets  : [255, 255, 255, 0]
-    def initialize(octets, mask=FULL_MASK)
-      raise InvalidAddress unless valid_octets? octets
-      raise TypeError unless valid_octets? mask
-
-      @octets, @mask_octets = octets.dup.freeze, mask.dup.freeze
     end
 
     def to_s
@@ -137,6 +127,7 @@ module Net
     end
 
     alias_method :broadcast, :directed_broadcast
+    alias_method :last, :directed_broadcast
     
     def unicast?
       ! (broadcast? || multicast?)
@@ -244,6 +235,8 @@ module Net
       self.class::TESTS.any?{|addr|addr.cover? self}
     end
     
+    alias_method :example?, :test?
+    
     # RFC6598
     def isp?
       self.class::ISP.cover? self
@@ -297,13 +290,6 @@ module Net
       nil
     end
 
-    def valid_octets?(octets)
-      (octets.length == 4) && 
-        octets.all?{|oct|(0..255).cover?(oct) && oct.integer?}
-    rescue NoMethodError
-      false
-    end
-
     def _network_octets
       mask_bit = @mask_octets.to_enum
       @octets.map{|bit|bit & mask_bit.next}
@@ -315,7 +301,7 @@ module Net
     end
     
     def string_for(octets)
-      octets.join OCTETS_DELIMITER
+      octets.join DELIMITER
     end
     
     def octets_for(int)
@@ -326,4 +312,4 @@ module Net
   
 end
 
-require_relative 'ipv4address/specials'
+require_relative 'version4/specials'

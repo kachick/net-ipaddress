@@ -1,8 +1,8 @@
 # Copyright (c) 2012 Kenichi Kamiya
 
-module Net
+module Net::IPAddress
 
-  class IPv4Address
+  class Version4
 
     PRIVATES = 
       [

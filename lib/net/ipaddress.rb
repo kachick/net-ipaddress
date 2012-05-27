@@ -15,6 +15,8 @@ module Net
     include Comparable
 
     class InvalidAddress < StandardError; end
+
+    MASK_SEPARATOR   = '/'.freeze
     
     class << self
 
@@ -32,14 +34,11 @@ module Net
       def valid?(str)
         concrete_classies.any?{|klass|klass.valid? str}
       end
-      
-      def foreach(first, last) 
-      end
 
       private
       
       def concrete_classies
-        [::Net::IPv4Address, ::Net::IPv6Address]
+        [Version4, Version6]
       end
 
       def construct(constructor, source)
@@ -56,6 +55,19 @@ module Net
         raise InvalidAddress
       end
       
+    end
+
+    # Called "octets" is expected a FixedArray the 4 length,
+    # that's members 0~255 Fixnum.
+    # And the "mask_octets" is same format with the octets.
+    # @example
+    #   octets: [192, 168, 1, 1]
+    #   mask_octets  : [255, 255, 255, 0]
+    def initialize(octets, mask_octets=FULL_MASK)
+      raise InvalidAddress unless valid_octets? octets
+      raise TypeError unless valid_octets? mask_octets
+
+      @octets, @mask_octets = octets.dup.freeze, mask_octets.dup.freeze
     end
 
     # [192, 168, 1 ,1]
@@ -119,7 +131,7 @@ module Net
     alias_method :byte_order, :big_endian
 
     def to_range
-      network..broadcast
+      network..last
     end
     
     # tmp code
@@ -137,7 +149,7 @@ module Net
     def each_host(contain_network=false)
       return to_enum(__callee__) unless block_given?
 
-      range = (contain_network ? network : network.next)...broadcast
+      range = (contain_network ? network : network.next)...last
       range.__send__ :each, &block
     end
 
@@ -161,6 +173,13 @@ module Net
     
     private
     
+    def valid_octets?(octets)
+      (octets.length == self.class::FULL_MASK.length) && 
+        octets.all?{|oct|(0..255).cover?(oct) && oct.integer?}
+    rescue NoMethodError
+      false
+    end
+    
     # @abstruct
     def memorize
       values
@@ -173,5 +192,5 @@ module Net
   
 end
 
-require_relative 'ipv4address'
-require_relative 'ipv6address'
+require_relative 'ipaddress/version4'
+require_relative 'ipaddress/version6'
