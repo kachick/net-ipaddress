@@ -16,7 +16,7 @@ module Net::IPAddress
         case str
         when /[^0-9a-fA-F:\.]/
           raise InvalidAddress
-        when /\./
+        when Version4::OCTETS_PATTERN
           parse_ipv4friend str
         when /\A(.+?)(?:#{MASK_SEPARATOR}(.+))?\z/o
           octets = octets_for_rfc4291 $1
@@ -107,17 +107,25 @@ module Net::IPAddress
       
       # @todo
       def parse_ipv4mapped(str)
-        if /\A(?:::|(?:0:){5})f{4}#{IPv4Address::OCTETS_PATTERN}\z/o =~ str
+        if /\A(?:::|(?:0:){5})f{4}#{Version4::OCTETS_PATTERN}\z/o =~ str
         end
       end
       
       # @todo
       # RFC3513
       def parse_ipv4compatible(str)
-        if /\A(?:::|(?:0:){6})#{IPv4Address::OCTETS_PATTERN}\z/o =~ str
+        if /\A(?:::|(?:0:){6})#{Version4::OCTETS_PATTERN}\z/o =~ str
         end
       end
       
+    end
+    
+    def ipv4address?
+      false
+    end
+    
+    def ipv6address?
+      true
     end
     
     def sections
@@ -132,6 +140,9 @@ module Net::IPAddress
     end
     
     def to_short_str
+    end
+    
+    def to_s_rfc5952
     end
 
     def unicast?
@@ -200,5 +211,5 @@ module Net::IPAddress
 
   end
 
-  
+  V6 = Version6
 end
