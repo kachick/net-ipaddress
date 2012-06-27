@@ -221,7 +221,7 @@ class Net::IPAddress::Version4
   end
   
   def octets_for(int)
-    int.to_s(2).ljust(32, '0').scan(/[01]{8}/).map{|s|s.to_i 2}
+    int.to_s(2).rjust(32, '0').scan(/[01]{8}/).map{|s|s.to_i 2}
   end
 
 end
