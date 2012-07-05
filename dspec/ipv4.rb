@@ -1,7 +1,7 @@
 $VERBOSE = true
 
 require_relative '../lib/net/ipaddress'
-require '../lib/declare'
+require 'declare'
 
 Declare do
 

@@ -192,6 +192,13 @@ class Net::IPAddress::Version4
     @directed_broadcast_octets ||= _directed_broadcast_octets
   end
 
+  protected
+  
+  def _bits
+    @bits ||= 
+      @octets.pack('C4').unpack('B32').first.split('').map(&:to_i).freeze
+  end
+
   private
 
   def _to_i
