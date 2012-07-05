@@ -5,9 +5,7 @@ module Net::IPAddress
   # Called "octets" is expected a FixedArray the 4 length,
   # that's members 0~255 Fixnum.
   # And the "mask_octets" is same format with the octets.
-  # @example
-  #   octets: [192, 168, 1, 1]
-  #   mask_octets  : [255, 255, 255, 0]
+  # @see #octets, #mask_octets
   def initialize(octets, mask_octets=FULL_MASK)
     raise InvalidAddress unless valid_octets? octets
     raise TypeError unless valid_octets? mask_octets
@@ -15,21 +13,25 @@ module Net::IPAddress
     @octets, @mask_octets = octets.dup.freeze, mask_octets.dup.freeze
   end
 
-  # [192, 168, 1 ,1]
+  # @return [Array<Fixnum>]
+  # @example 
+  #   IPAddress.parse('192.168.1.1/24').octets #=> [192, 168, 1 ,1]
   def octets
     @octets.dup
   end
 
   alias_method :bytes, :octets
 
-  # [255, 255, 255, 0]
+  # @return [Array<Fixnum>]
+  # @example 
+  #   IPAddress.parse('192.168.1.1/24').mask_octets #=> [255, 255, 255, 0]
   def mask_octets
     @mask_octets.dup
   end
 
   alias_method :netmask, :mask_octets
 
-  # @return [Version4] new object
+  # @return [Version4, Version6] new object
   def masked(other_mask_or_prefix)
     mask = (
       if other_mask_or_prefix.integer?
@@ -50,6 +52,13 @@ module Net::IPAddress
     self.class.new @octets, mask
   end
   
+  # @return [Array<Fixnum>]
+  # @example 
+  #   IPAddress.parse('192.168.1.1/24').bits
+  #    #=> [1, 1, 0, 0, 0, 0, 0, 0,
+  #         1, 0, 1, 0, 1, 0, 0, 0,
+  #         0, 0, 0, 0, 0, 0, 0, 1,
+  #         0, 0, 0, 0, 0, 0, 0, 1]
   def bits
     _bits.dup
   end
@@ -60,10 +69,12 @@ module Net::IPAddress
     true
   end
 
+  # @return [self]
   def ipaddress
     self
   end
 
+  # @return [0, 1, nil]
   def <=>(other)
     family?(other) ? (@octets <=> other.octets) : nil
   end
@@ -74,40 +85,43 @@ module Net::IPAddress
 
   alias_method :==, :eql?
 
+  # @return [Number]
   def hash
     values.hash
   end
 
+  # @return [self]
   def freeze
     memorize
     super
   end
   
+  # @return [Boolean]
   def ===(other)
     cover? other
   end
 
+  # @return [String]
+  # @example
+  #   IPAddress.parse('192.168.1.1').big_endian #=> "\xC0\xA8\x01\x01"
   def big_endian
+    @octets.pack 'C4'
   end
 
   alias_method :byte_order, :big_endian
 
+  # @return [Range]
   def to_range
     network..last
   end
   
   # tmp code
+  # @return Integer
   def host_counts
-    hosts.to_a.length
+    hosts.to_a.size
   end
   
-  # tmp code
-  def length
-    to_range.to_a.length
-  end
-  
-  alias_method :size, :length
-  
+  # @return [self]
   def each_host(contain_network=false, &block)
     return to_enum(__callee__) unless block_given?
 
@@ -117,6 +131,7 @@ module Net::IPAddress
 
   alias_method :hosts, :each_host
 
+  # @return [self]
   def each_address(&block)
     return to_enum(__callee__) unless block_given?
 
@@ -145,7 +160,7 @@ module Net::IPAddress
   # @abstruct
   def memorize
     values
-    bits
+    _bits
     to_i
     nil
   end

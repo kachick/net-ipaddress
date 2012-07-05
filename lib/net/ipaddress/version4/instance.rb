@@ -2,12 +2,17 @@
 
 class Net::IPAddress::Version4
 
+  # @return [String]
   def to_s
     string_for @octets
   end
 
-  # "192.168.1.1/255.255.255.247(!)"
-  # "192.168.1.1/255.255.255.0(24)"
+  # @return [String]
+  # @example
+  #   IPAddress.parse('192.168.1.1/255.255.255.247').inspect
+  #     #=> "#<IPv4: 192.168.1.1/255.255.255.247(!)>"
+  #   IPAddress.parse('192.168.1.1/255.255.255.0').inspect
+  #     #=> "#<IPv4: 192.168.1.1/255.255.255.0(24)>"
   def inspect
     "#<IPv4: #{to_s}/#{string_for @mask_octets}(#{cidr? ? prefix_length: '!'})>"
   end
@@ -32,10 +37,12 @@ class Net::IPAddress::Version4
     limited_broadcast? || directed_broadcast?
   end
 
+  # @return [Version4]
   def network
     self.class.new network_octets, @mask_octets
   end
 
+  # @return [Version4]
   def directed_broadcast
     self.class.new directed_broadcast_octets, @mask_octets
   end
@@ -112,12 +119,14 @@ class Net::IPAddress::Version4
       (network_octets == other.network_octets)
   end
   
+  # @return [Version4] next orderd object
   def succ(step=1)
     self.class.new octets_for(to_i + step.to_int), @mask_octets
   end
   
   alias_method :next, :succ
   
+  # @return [Fixnum]
   def prefix_length
     if index = PREFIXIES.index(@mask_octets)
       index
@@ -167,13 +176,16 @@ class Net::IPAddress::Version4
     self.class::IETF.cover? self
   end
 
+  # @return [self]
   def to_ipv4
     self
   end
   
+  # @return [Version6]
   def to_ipv6
   end
 
+  # @return [Integer]
   def to_i
     @to_i ||= _to_i
   end
@@ -192,11 +204,9 @@ class Net::IPAddress::Version4
     @directed_broadcast_octets ||= _directed_broadcast_octets
   end
 
-  protected
-  
   def _bits
     @bits ||= 
-      @octets.pack('C4').unpack('B32').first.split('').map(&:to_i).freeze
+      byte_order.unpack('B32').first.split('').map(&:to_i).freeze
   end
 
   private

@@ -2,10 +2,12 @@
 
 module Net; module IPAddress; class << self
 
+  # @return [Version4, Version6]
   def parse(str)
     construct __callee__, str
   end
 
+  # @return [Version4, Version6]
   def parse_big_endian(str)
     construct __callee__, str
   end

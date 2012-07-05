@@ -2,6 +2,7 @@
 
 module Net::IPAddress; class Version4; class << self
 
+  # @return [Version4]
   def parse(str)
     case str
     when /\A#{PATTERN}\z/o
