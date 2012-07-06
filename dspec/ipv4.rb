@@ -24,8 +24,23 @@ Declare do
       v4class.parse '192.168.1.1!32'
     end
 
+    The Net::IPAddress('255.255.255.255') do |full|
+      The full.to_i do
+        is 4_294_967_295
+        is Net::IPAddress(4_294_967_295).to_i
+      end
+    end
+
+    The Net::IPAddress(12) do |low|
+      is Net::IPAddress('0.0.0.12')
+      
+      The low.to_i do
+        is 12
+      end
+    end
 
     The v4class.parse('192.168.1.1') do |addr|
+      is Net::IPAddress('192.168.1.1')
       a v4class
       kind Net::IPAddress
       is v4class.parse('192.168.1.1')

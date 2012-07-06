@@ -1,6 +1,6 @@
 # Copyright (c) 2012 Kenichi Kamiya
 
-module Net::IPAddress
+module Net; module IPAddress
 
   class Version4
     
@@ -10,9 +10,9 @@ module Net::IPAddress
   
   V4 = Version4
   
-end
+end; end
 
 require_relative 'version4/constants'
-require_relative 'version4/singleton_class'
+require_relative 'version4/singletonclass'
 require_relative 'version4/instance'
 require_relative 'version4/special_addressies'

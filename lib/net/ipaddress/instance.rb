@@ -1,12 +1,12 @@
 # Copyright (c) 2012 Kenichi Kamiya
 
-module Net::IPAddress
+module Net; module IPAddress
 
   # Called "octets" is expected a FixedArray the 4 length,
   # that's members 0~255 Fixnum.
   # And the "mask_octets" is same format with the octets.
   # @see #octets, #mask_octets
-  def initialize(octets, mask_octets=FULL_MASK)
+  def initialize(octets, mask_octets=self.class::FULL_MASK)
     raise InvalidAddress unless valid_octets? octets
     raise TypeError unless valid_octets? mask_octets
 
@@ -15,7 +15,7 @@ module Net::IPAddress
 
   # @return [Array<Fixnum>]
   # @example 
-  #   IPAddress.parse('192.168.1.1/24').octets #=> [192, 168, 1 ,1]
+  #   IPAddress('192.168.1.1/24').octets #=> [192, 168, 1 ,1]
   def octets
     @octets.dup
   end
@@ -24,14 +24,14 @@ module Net::IPAddress
 
   # @return [Array<Fixnum>]
   # @example 
-  #   IPAddress.parse('192.168.1.1/24').mask_octets #=> [255, 255, 255, 0]
+  #   IPAddress('192.168.1.1/24').mask_octets #=> [255, 255, 255, 0]
   def mask_octets
     @mask_octets.dup
   end
 
   alias_method :netmask, :mask_octets
 
-  # @return [Version4, Version6] new object
+  # @return [IPAddress] new object
   def masked(other_mask_or_prefix)
     mask = (
       if other_mask_or_prefix.integer?
@@ -54,7 +54,7 @@ module Net::IPAddress
   
   # @return [Array<Fixnum>]
   # @example 
-  #   IPAddress.parse('192.168.1.1/24').bits
+  #   IPAddress('192.168.1.1/24').bits
   #    #=> [1, 1, 0, 0, 0, 0, 0, 0,
   #         1, 0, 1, 0, 1, 0, 0, 0,
   #         0, 0, 0, 0, 0, 0, 0, 1,
@@ -103,7 +103,7 @@ module Net::IPAddress
 
   # @return [String]
   # @example
-  #   IPAddress.parse('192.168.1.1').big_endian #=> "\xC0\xA8\x01\x01"
+  #   IPAddress('192.168.1.1').big_endian #=> "\xC0\xA8\x01\x01"
   def big_endian
     @octets.pack 'C4'
   end
@@ -114,9 +114,15 @@ module Net::IPAddress
   def to_range
     network..last
   end
-  
-  # tmp code
-  # @return Integer
+
+  # @todo
+  # @return [Integer]
+  def space
+    hosts(true).to_a.size
+  end
+
+  # @todo
+  # @return [Integer]
   def host_counts
     hosts.to_a.size
   end
@@ -140,14 +146,6 @@ module Net::IPAddress
 
   alias_method :addressies, :each_address
   
-  protected
-  
-  def _bits
-    @bits ||= @octets.map{|oct|
-      oct.to_s(2).rjust(8, '0').split('').map(&:to_i)
-    }.flatten.freeze
-  end
-  
   private
   
   def valid_octets?(octets)
@@ -157,7 +155,6 @@ module Net::IPAddress
     false
   end
   
-  # @abstruct
   def memorize
     values
     _bits
@@ -165,4 +162,4 @@ module Net::IPAddress
     nil
   end
 
-end
+end; end

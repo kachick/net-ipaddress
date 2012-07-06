@@ -1,6 +1,6 @@
 # Copyright (c) 2012 Kenichi Kamiya
 
-class Net::IPAddress::Version4
+module Net; module IPAddress; class Version4
 
   PRIVATES = 
     [
@@ -24,4 +24,4 @@ class Net::IPAddress::Version4
 
   IETF = new([192, 0, 0, 0], PREFIXIES[24])
 
-end
+end; end; end

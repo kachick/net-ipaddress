@@ -1,0 +1,17 @@
+README.rdoc
+LICENSE
+History.rdoc
+Manifest.txt
+Rakefile
+lib/net/ipaddress.rb
+lib/net/ipaddress/instance.rb
+lib/net/ipaddress/singletonclass.rb
+lib/net/ipaddress/version4.rb
+lib/net/ipaddress/version4/instance.rb
+lib/net/ipaddress/version4/singletonclass.rb
+lib/net/ipaddress/version4/constants.rb
+lib/net/ipaddress/version4/special_addressies.rb
+lib/net/ipaddress/version6.rb
+dspec/ipv4.rb
+examples/example.rb
+examples/from_readme.rb

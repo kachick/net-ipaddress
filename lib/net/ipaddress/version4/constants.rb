@@ -1,6 +1,6 @@
 # Copyright (c) 2012 Kenichi Kamiya
 
-class Net::IPAddress::Version4
+module Net; module IPAddress; class Version4
 
   DELIMITER = '.'.freeze
   
@@ -52,4 +52,4 @@ class Net::IPAddress::Version4
 
   FULL_MASK = PREFIXIES.last
   
-end
+end; end; end

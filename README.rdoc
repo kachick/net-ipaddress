@@ -1,0 +1,43 @@
+= net-ipaddress
+
+code :: https://github.com/kachick/net-ipaddress
+bugs :: https://github.com/kachick/net-ipaddress/issue
+
+== Description
+
+Utils for IPAddress impression
+
+== Futures
+
+* Usuful methods
+* Immutable
+* Now, supporting version4
+
+== Usage
+
+    require 'net/ipaddress'
+
+    ip1 = Net.IPAddress('192.168.1.1/24')
+    ip2 = Net.IPAddress('192.168.1.10/24')
+    ip3 = Net.IPAddress('192.168.0.0/16')
+    ip1.segment? ip2 #=> true
+    ip2.segment? ip1 #=> true
+    ip1.segment? ip3 #=> false
+    ip1.cover? ip3   #=> false
+    ip3.cover? ip1   #=> true
+
+== Requirements
+
+Ruby 1.9.2 or later
+
+== Installation
+
+gem install net-ipaddress
+
+== License
+
+The MIT X11 License
+
+Copyright (c) 2012 Kenichi Kamiya
+
+See the file LICENSE for further details.

@@ -2,6 +2,7 @@
 
 module Net::IPAddress
 
+  # @todo
   class Version6
 
     include Net::IPAddress
@@ -11,6 +12,11 @@ module Net::IPAddress
     SQUEEZ    = '::'.freeze
     
     class << self
+
+      # @param [128]
+      def bit_lengh
+        128
+      end
 
       def parse(str)
         case str

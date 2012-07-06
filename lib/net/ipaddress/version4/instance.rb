@@ -1,10 +1,10 @@
 # Copyright (c) 2012 Kenichi Kamiya
 
-class Net::IPAddress::Version4
+module Net; module IPAddress; class Version4
 
   # @return [String]
   def to_s
-    string_for @octets
+    string_for_octets @octets
   end
 
   # @return [String]
@@ -14,7 +14,7 @@ class Net::IPAddress::Version4
   #   IPAddress.parse('192.168.1.1/255.255.255.0').inspect
   #     #=> "#<IPv4: 192.168.1.1/255.255.255.0(24)>"
   def inspect
-    "#<IPv4: #{to_s}/#{string_for @mask_octets}(#{cidr? ? prefix_length: '!'})>"
+    "#<IPv4: #{to_s}/#{string_for_octets @mask_octets}(#{cidr? ? prefix_length: '!'})>"
   end
   
   def host?
@@ -121,7 +121,10 @@ class Net::IPAddress::Version4
   
   # @return [Version4] next orderd object
   def succ(step=1)
-    self.class.new octets_for(to_i + step.to_int), @mask_octets
+    self.class.new(
+      self.class.octets_for_integer(to_i + step.to_int),
+      @mask_octets
+    )
   end
   
   alias_method :next, :succ
@@ -177,12 +180,13 @@ class Net::IPAddress::Version4
   end
 
   # @return [self]
-  def to_ipv4
+  def to_ipv4addrress
     self
   end
   
+  # @todo
   # @return [Version6]
-  def to_ipv6
+  def to_ipv6addrress
   end
 
   # @return [Integer]
@@ -233,12 +237,8 @@ class Net::IPAddress::Version4
     @mask_octets.map{|mo|octet.next | (mo ^ 255)}
   end
   
-  def string_for(octets)
+  def string_for_octets(octets)
     octets.join DELIMITER
   end
-  
-  def octets_for(int)
-    int.to_s(2).rjust(32, '0').scan(/[01]{8}/).map{|s|s.to_i 2}
-  end
 
-end
+end; end; end
