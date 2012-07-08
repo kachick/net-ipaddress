@@ -30,27 +30,6 @@ module Net; module IPAddress
   end
 
   alias_method :netmask, :mask_octets
-
-  # @return [IPAddress] new object
-  def masked(other_mask_or_prefix)
-    mask = (
-      if other_mask_or_prefix.integer?
-        if ret = self.class::PREFIXIES[other_mask_or_prefix]
-          ret
-        else
-          raise InvalidAddress
-        end
-      else
-        if valid_octets? other_mask_or_prefix
-          other_mask_or_prefix
-        else
-          raise InvalidAddress
-        end
-      end
-    )
-    
-    self.class.new @octets, mask
-  end
   
   # @return [Array<Fixnum>]
   # @example 
