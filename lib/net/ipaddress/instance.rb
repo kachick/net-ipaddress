@@ -49,7 +49,7 @@ module Net; module IPAddress
   end
 
   # @return [self]
-  def ipaddress
+  def to_ipaddress
     self
   end
 
