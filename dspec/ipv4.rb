@@ -112,7 +112,7 @@ Declare do
       truthy addr.network?
       truthy addr.broadcast?
       
-      The addr.masked(24) do |new_addr|
+      The Net::IPAddress::Version4.new(addr.octets, [255, 255, 255, 0]) do |new_addr|
         truthy new_addr.unicast?
         falthy new_addr.network?
         falthy new_addr.broadcast?
