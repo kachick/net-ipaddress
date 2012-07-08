@@ -5,7 +5,7 @@ module Net::IPAddress
   # @todo
   class Version6
 
-    include Net::IPAddress
+    include ::Net::IPAddress
     
     FULL_MASK = 16.times.map{255}.freeze
     DELIMITER = ':'.freeze

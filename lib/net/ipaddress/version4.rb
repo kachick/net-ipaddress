@@ -4,7 +4,7 @@ module Net; module IPAddress
 
   class Version4
     
-    include Net::IPAddress
+    include ::Net::IPAddress
 
   end
   
