@@ -12,6 +12,8 @@ lib/net/ipaddress/version4/singletonclass.rb
 lib/net/ipaddress/version4/constants.rb
 lib/net/ipaddress/version4/special_addressies.rb
 lib/net/ipaddress/version6.rb
+lib/net/ipaddress/ext/ipaddr.rb
 dspec/ipv4.rb
+dspec/ext_ipaddr.rb
 examples/example.rb
 examples/from_readme.rb
