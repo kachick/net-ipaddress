@@ -5,7 +5,7 @@ bugs :: https://github.com/kachick/net-ipaddress/issue
 
 == Description
 
-Utils for IPAddress impression
+Utils for ipaddresses
 
 == Futures
 
@@ -14,6 +14,8 @@ Utils for IPAddress impression
 * Now, supporting version4
 
 == Usage
+
+=== Basic
 
     require 'net/ipaddress'
     include Net
@@ -26,6 +28,13 @@ Utils for IPAddress impression
     ip1.segment? ip3 #=> false
     ip1.cover? ip3   #=> false
     ip3.cover? ip1   #=> true
+
+=== IPAddr <-> Net::IPAddress
+
+    require 'net/ipaddress/ext/ipaddr'
+    
+    IPAddr.new('192.168.1.1/24').to_ipaddress == 
+     IPAddress('192.168.1.1/24').network         #=> true
 
 == Requirements
 
