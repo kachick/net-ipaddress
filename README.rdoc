@@ -16,10 +16,11 @@ Utils for IPAddress impression
 == Usage
 
     require 'net/ipaddress'
-
-    ip1 = Net.IPAddress('192.168.1.1/24')
-    ip2 = Net.IPAddress('192.168.1.10/24')
-    ip3 = Net.IPAddress('192.168.0.0/16')
+    include Net
+    
+    ip1 = IPAddress('192.168.1.1/24')
+    ip2 = IPAddress('192.168.1.10/24')
+    ip3 = IPAddress('192.168.0.0/16')
     ip1.segment? ip2 #=> true
     ip2.segment? ip1 #=> true
     ip1.segment? ip3 #=> false

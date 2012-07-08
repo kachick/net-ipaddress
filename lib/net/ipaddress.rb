@@ -22,22 +22,20 @@ module Net
 
   end
   
-  class << self
-    
-    # @return [IPAddress]
-    def IPAddress(source)
-      case source
-      when IPAddress
-        source
-      when ->src{src.respond_to? :to_str}
-        IPAddress.parse source.to_str
-      when ->src{src.respond_to? :integer?}
-        IPAddress.for_integer source.to_int
-      else
-        raise TypeError
-      end
-    end
+  module_function
 
+  # @return [IPAddress]
+  def IPAddress(source)
+    case source
+    when IPAddress
+      source
+    when ->src{src.respond_to? :to_str}
+      IPAddress.parse source.to_str
+    when ->src{src.respond_to? :integer?}
+      IPAddress.for_integer source.to_int
+    else
+      raise TypeError
+    end
   end
 
 end
