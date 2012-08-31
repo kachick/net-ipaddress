@@ -7,12 +7,11 @@
 #   * has usuful methods
 #   * immutable
 
+require_relative 'ipaddress/version'
 
 module Net
 
   module IPAddress
-
-    VERSION = '0.0.2'
 
     include Comparable
 
@@ -40,7 +39,7 @@ module Net
 
 end
 
-require_relative 'ipaddress/singletonclass'
+require_relative 'ipaddress/singleton_class'
 require_relative 'ipaddress/instance'
 require_relative 'ipaddress/version4'
 require_relative 'ipaddress/version6'

@@ -1,5 +1,3 @@
-# Copyright (c) 2012 Kenichi Kamiya
-
 module Net; module IPAddress; class Version4
 
   # @return [String]
