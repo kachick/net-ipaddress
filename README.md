@@ -2,6 +2,7 @@ net-ipaddress
 ==============
 
 [![Build Status](https://secure.travis-ci.org/kachick/net-ipaddress.png)](http://travis-ci.org/kachick/net-ipaddress)
+[![Gem Version](https://badge.fury.io/rb/net-ipaddress.png)](http://badge.fury.io/rb/net-ipaddress)
 
 Description
 ------------
@@ -69,6 +70,6 @@ Link
 License
 -------
 
-The MIT X License  
+The MIT X11 License  
 Copyright (c) 2012 Kenichi Kamiya  
 See MIT-LICENSE for further details.
