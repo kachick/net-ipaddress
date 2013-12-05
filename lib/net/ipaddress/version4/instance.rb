@@ -180,13 +180,13 @@ module Net; module IPAddress; class Version4
   end
 
   # @return [self]
-  def to_ipv4addrress
+  def to_ipv4address
     self
   end
   
   # @todo
   # @return [Version6]
-  def to_ipv6addrress
+  def to_ipv6address
   end
 
   # @return [Integer]
