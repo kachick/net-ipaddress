@@ -1,12 +1,8 @@
 # coding: us-ascii
-# net-ipaddress
 # Copyright (c) 2012 Kenichi Kamiya
-#
-#   Provide Utils for IPAddress impression
-#   They help your manupilation with any IPAddrresies
 # 
-#   * has usuful methods
-#   * immutable
+# net-ipaddress
+#   Relieve you of annoying task with IP Addreses
 
 require_relative 'ipaddress/version'
 
