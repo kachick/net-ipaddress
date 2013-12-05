@@ -1,4 +1,6 @@
 #!/usr/bin/env rake
+# coding: us-ascii
+
 require 'bundler/gem_tasks'
 
 task default: [:declare]

@@ -1,3 +1,4 @@
+# coding: us-ascii
 # Copyright (c) 2012 Kenichi Kamiya
 
 module Net; module IPAddress

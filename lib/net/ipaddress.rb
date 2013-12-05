@@ -1,3 +1,4 @@
+# coding: us-ascii
 # net-ipaddress
 # Copyright (c) 2012 Kenichi Kamiya
 #

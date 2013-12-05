@@ -1,3 +1,5 @@
+# coding: us-ascii
+
 require File.expand_path('../lib/net/ipaddress/version', __FILE__)
 
 Gem::Specification.new do |gem|

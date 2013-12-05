@@ -1,3 +1,5 @@
+# coding: us-ascii
+
 module Net; module IPAddress; class Version4
 
   # @return [String]
