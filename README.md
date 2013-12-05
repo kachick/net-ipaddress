@@ -49,7 +49,7 @@ IPAddr.new('192.168.1.1/24') == IPAddress('192.168.1.1/24').network #=> true
 Requirements
 ------------
 
-* Ruby 1.9.2 or later [MRI/YARV, Rubinius, JRuby](http://travis-ci.org/#!/kachick/net-ipaddress)
+* [Ruby 1.9.3 or later](http://travis-ci.org/#!/kachick/net-ipaddress)
 
 Installation
 -------------
@@ -65,7 +65,6 @@ Link
 * [issues](https://github.com/kachick/net-ipaddress/issues)
 * [CI](http://travis-ci.org/#!/kachick/net-ipaddress)
 * [gem](https://rubygems.org/gems/net-ipaddress)
-* [gem+](http://metagem.info/gems/net-ipaddress)
 
 License
 -------
