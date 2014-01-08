@@ -102,7 +102,7 @@ module Net; module IPAddress; class Version4
   alias_method :===, :cover?
 
   def family?(other)
-    other.respond_to?(:ipv4address?) && other.ipv4address?
+    other.kind_of?(::Net::IPAddress) && other.ipv4address?
   end
 
   def ipv4address?
