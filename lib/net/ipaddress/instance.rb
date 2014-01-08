@@ -109,7 +109,7 @@ module Net; module IPAddress
   
   # @return [self]
   def each_host(contain_network=false, &block)
-    return to_enum(__callee__) unless block_given?
+    return to_enum(__callee__, contain_network) unless block_given?
 
     range = (contain_network ? network : network.next)...last
     range.__send__ :each, &block
