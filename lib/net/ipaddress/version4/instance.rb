@@ -119,7 +119,7 @@ module Net; module IPAddress; class Version4
       (network_octets == other.network_octets)
   end
   
-  # @return [Version4] next orderd object
+  # @return [Version4] next ordered object
   def succ(step=1)
     self.class.new(
       self.class.octets_for_integer(to_i + step.to_int),

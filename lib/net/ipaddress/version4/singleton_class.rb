@@ -4,7 +4,7 @@ module Net; module IPAddress; class Version4
   
   class << self
   
-    # @param [32]
+    # @return [32]
     def bit_lengh
       32
     end
