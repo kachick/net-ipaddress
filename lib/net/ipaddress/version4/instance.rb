@@ -65,7 +65,7 @@ module Net; module IPAddress; class Version4
   
   # It is able to deal with "classfull"
   def classible?
-    %w[a b c d e].any?{|s|__send__ "class_#{s}?"}
+    %w[a b c d e].any?{|s|__send__ :"class_#{s}?"}
   end
 
   # RFC791
