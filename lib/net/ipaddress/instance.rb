@@ -107,6 +107,7 @@ module Net; module IPAddress
     hosts.to_a.size
   end
   
+  # @param contain_network [Boolean]
   # @return [self]
   def each_host(contain_network=false, &block)
     return to_enum(__callee__, contain_network) unless block_given?
