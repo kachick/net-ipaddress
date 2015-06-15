@@ -56,6 +56,42 @@ The Net::IPAddress::Version4 do |v4class|
     end
   end
 
+  The v4class.parse('0.0.0.1/255.0.0.0') do |addr|
+    truthy addr.class_a?
+    falthy addr.class_b?
+    falthy addr.class_c?
+  end
+
+  The v4class.parse('127.0.0.1/255.0.0.0') do |addr|
+    truthy addr.class_a?
+    falthy addr.class_b?
+    falthy addr.class_c?
+  end
+
+  The v4class.parse('128.0.0.1/255.255.0.0') do |addr|
+    falthy addr.class_a?
+    truthy addr.class_b?
+    falthy addr.class_c?
+  end
+
+  The v4class.parse('191.255.0.1/255.255.0.0') do |addr|
+    falthy addr.class_a?
+    truthy addr.class_b?
+    falthy addr.class_c?
+  end
+
+  The v4class.parse('192.0.0.1/255.255.255.0') do |addr|
+    falthy addr.class_a?
+    falthy addr.class_b?
+    truthy addr.class_c?
+  end
+
+  The v4class.parse('223.255.255.1/255.255.255.0') do |addr|
+    falthy addr.class_a?
+    falthy addr.class_b?
+    truthy addr.class_c?
+  end
+
   The v4class.parse('192.168.1.1/28') do |addr|
     The addr.inspect  do
       is '#<IPv4: 192.168.1.1/255.255.255.240(28)>'
