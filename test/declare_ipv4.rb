@@ -80,6 +80,14 @@ The Net::IPAddress::Version4 do |v4class|
         equal addr
       end
     end
+
+    The addr.hosts do |enum|
+      a Enumerator
+      
+      The addr.each_host {} do
+        equal addr
+      end
+    end
     
     truthy addr.cover?(v4class.parse('192.168.1.2/28'))
     truthy addr.cover?(v4class.parse('192.168.1.2/24'))

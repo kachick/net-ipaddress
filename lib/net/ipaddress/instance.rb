@@ -114,6 +114,7 @@ module Net; module IPAddress
 
     range = (contain_network ? network : network.next)...last
     range.__send__ :each, &block
+    self
   end
 
   alias_method :hosts, :each_host
