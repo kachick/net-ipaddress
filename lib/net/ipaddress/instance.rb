@@ -105,11 +105,10 @@ module Net; module IPAddress
     subnet_counts - 2
   end
   
-  # @todo Enumerator#size
   # @param contain_network [Boolean]
   # @return [self]
   def each_host(contain_network=false, &block)
-    return to_enum(__callee__, contain_network) unless block_given?
+    return to_enum(__callee__, contain_network)  { subnet_counts - 2 + (contain_network ? 1 : 0) } unless block_given?
 
     range = (contain_network ? network : network.next)...last
     range.__send__ :each, &block
@@ -123,10 +122,9 @@ module Net; module IPAddress
     2 ** (self.class.bit_lengh - prefix_length)
   end
 
-  # @todo Enumerator#size
   # @return [self]
   def each_address(&block)
-    return to_enum(__callee__) unless block_given?
+    return to_enum(__callee__) { subnet_counts } unless block_given?
 
     to_range.__send__ :each, &block
     self

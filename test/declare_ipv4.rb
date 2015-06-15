@@ -81,6 +81,7 @@ The Net::IPAddress::Version4 do |v4class|
       end
       
       The addr.subnet_counts do
+        is enum.size
         is 16
       end
     end
@@ -99,6 +100,7 @@ The Net::IPAddress::Version4 do |v4class|
       end
       
       The addr.host_counts do
+        is enum.size
         is 14
       end
     end
