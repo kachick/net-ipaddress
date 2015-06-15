@@ -84,6 +84,12 @@ The Net::IPAddress::Version4 do |v4class|
     The addr.hosts do |enum|
       a Enumerator
       
+      The enum.to_a do |list|
+        truthy list.first.inspect == '#<IPv4: 192.168.1.1/255.255.255.240(28)>'
+        truthy list[4].inspect == '#<IPv4: 192.168.1.5/255.255.255.240(28)>'
+        truthy list.last.inspect == '#<IPv4: 192.168.1.14/255.255.255.240(28)>'
+      end
+      
       The addr.each_host {} do
         equal addr
       end
