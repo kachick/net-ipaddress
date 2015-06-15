@@ -107,6 +107,7 @@ module Net; module IPAddress
     hosts.to_a.size
   end
   
+  # @todo Enumerator#size
   # @param contain_network [Boolean]
   # @return [self]
   def each_host(contain_network=false, &block)
@@ -119,6 +120,7 @@ module Net; module IPAddress
 
   alias_method :hosts, :each_host
 
+  # @todo Enumerator#size
   # @return [self]
   def each_address(&block)
     return to_enum(__callee__) unless block_given?
