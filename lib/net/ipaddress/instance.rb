@@ -120,6 +120,12 @@ module Net; module IPAddress
 
   alias_method :hosts, :each_host
 
+  # @todo Don't generate objects to calculate
+  # @return [Integer]
+  def subnet_counts
+    addressies.to_a.size
+  end
+
   # @todo Enumerator#size
   # @return [self]
   def each_address(&block)

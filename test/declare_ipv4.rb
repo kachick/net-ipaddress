@@ -79,6 +79,10 @@ The Net::IPAddress::Version4 do |v4class|
       The addr.each_address {} do
         equal addr
       end
+      
+      The addr.subnet_counts do
+        is 16
+      end
     end
 
     The addr.hosts do |enum|
