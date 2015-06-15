@@ -3,7 +3,7 @@
 
 module Net::IPAddress
 
-  # @todo
+  # @todo Implement :)
   class Version6
 
     include ::Net::IPAddress
