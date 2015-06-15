@@ -70,17 +70,17 @@ module Net; module IPAddress; class Version4
 
   # RFC791
   def class_a?
-    (_bits.take(1) == [0]) && (prefix_lengh == 8)
+    (_bits.take(1) == [0]) && (prefix_length == 8)
   end
   
   # RFC791
   def class_b?
-    (_bits.take(2) == [1, 0]) && (prefix_lengh == 16)
+    (_bits.take(2) == [1, 0]) && (prefix_length == 16)
   end
   
   # RFC791
   def class_c?
-    (_bits.take(3) == [1, 1, 0]) && (prefix_lengh == 24)
+    (_bits.take(3) == [1, 1, 0]) && (prefix_length == 24)
   end
   
   # RFC3171

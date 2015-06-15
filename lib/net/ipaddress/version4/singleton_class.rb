@@ -5,7 +5,7 @@ module Net; module IPAddress; class Version4
   class << self
   
     # @return [32]
-    def bit_lengh
+    def bit_length
       32
     end
 
@@ -60,7 +60,7 @@ module Net; module IPAddress; class Version4
       int = int.to_int
       raise RangeError unless (0..4_294_967_295).cover? int
       
-      int.to_s(2).rjust(bit_lengh, '0').
+      int.to_s(2).rjust(bit_length, '0').
         scan(/[01]{8}/).map{|s|s.to_i 2}
     end
 

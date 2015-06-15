@@ -119,7 +119,7 @@ module Net; module IPAddress
 
   # @return [Integer]
   def subnet_counts
-    2 ** (self.class.bit_lengh - prefix_length)
+    2 ** (self.class.bit_length - prefix_length)
   end
 
   # @return [self]

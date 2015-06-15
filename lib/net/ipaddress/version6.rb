@@ -15,7 +15,7 @@ module Net::IPAddress
     class << self
 
       # @param [128]
-      def bit_lengh
+      def bit_length
         128
       end
 
