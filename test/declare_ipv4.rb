@@ -97,6 +97,10 @@ The Net::IPAddress::Version4 do |v4class|
       The addr.each_host {} do
         equal addr
       end
+      
+      The addr.host_counts do
+        is 14
+      end
     end
     
     truthy addr.cover?(v4class.parse('192.168.1.2/28'))
