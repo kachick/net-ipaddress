@@ -123,6 +123,7 @@ module Net; module IPAddress
     return to_enum(__callee__) unless block_given?
 
     to_range.__send__ :each, &block
+    self
   end
 
   alias_method :addressies, :each_address

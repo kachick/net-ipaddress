@@ -75,6 +75,10 @@ The Net::IPAddress::Version4 do |v4class|
         truthy list.first == list.sample.network
         truthy list.last == list.sample.broadcast
       end
+      
+      The addr.each_address {} do
+        equal addr
+      end
     end
     
     truthy addr.cover?(v4class.parse('192.168.1.2/28'))
