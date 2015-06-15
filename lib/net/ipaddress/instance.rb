@@ -130,7 +130,7 @@ module Net; module IPAddress
     self
   end
 
-  alias_method :addressies, :each_address
+  alias_method :addresses, :each_address
   
   private
   

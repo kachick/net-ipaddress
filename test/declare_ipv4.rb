@@ -65,7 +65,7 @@ The Net::IPAddress::Version4 do |v4class|
       is '#<IPv4: 192.168.1.22/255.255.255.240(28)>'
     end
     
-    The addr.addressies do |enum|
+    The addr.addresses do |enum|
       a Enumerator
 
       The enum.to_a do |list|
