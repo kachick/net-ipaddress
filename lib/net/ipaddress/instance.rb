@@ -95,16 +95,14 @@ module Net; module IPAddress
     network..last
   end
 
-  # @todo Don't generate objects to calculate
   # @return [Integer]
   def space
-    hosts(true).to_a.size
+    subnet_counts - 1
   end
 
-  # @todo Don't generate objects to calculate
   # @return [Integer]
   def host_counts
-    hosts.to_a.size
+    subnet_counts - 2
   end
   
   # @todo Enumerator#size
@@ -120,10 +118,9 @@ module Net; module IPAddress
 
   alias_method :hosts, :each_host
 
-  # @todo Don't generate objects to calculate
   # @return [Integer]
   def subnet_counts
-    addressies.to_a.size
+    2 ** (self.class.bit_lengh - prefix_length)
   end
 
   # @todo Enumerator#size
