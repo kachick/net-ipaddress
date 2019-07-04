@@ -51,7 +51,7 @@ IPAddr.new('192.168.1.1/24') == IPAddress('192.168.1.1/24').network #=> true
 Requirements
 ------------
 
-* [Ruby 2.0.0 or later](http://travis-ci.org/#!/kachick/net-ipaddress)
+* [Ruby 2.5 or later](http://travis-ci.org/#!/kachick/net-ipaddress)
 
 Installation
 -------------

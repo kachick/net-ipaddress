@@ -13,7 +13,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Net::IPAddress::VERSION.dup
 
-  gem.required_ruby_version = '>= 2.0.0'
   gem.add_development_dependency 'declare', '~> 0.0.6'
   gem.add_development_dependency 'yard', '>= 0.8.7.6', '< 0.9'
   gem.add_development_dependency 'rake', '>= 10', '< 20'
