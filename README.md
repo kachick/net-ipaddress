@@ -3,7 +3,6 @@ net-ipaddress
 
 [![Build Status](https://secure.travis-ci.org/kachick/net-ipaddress.png)](http://travis-ci.org/kachick/net-ipaddress)
 [![Gem Version](https://badge.fury.io/rb/net-ipaddress.png)](http://badge.fury.io/rb/net-ipaddress)
-[![Dependency Status](https://gemnasium.com/kachick/net-ipaddress.svg)](https://gemnasium.com/kachick/net-ipaddress)
 
 Description
 ------------
