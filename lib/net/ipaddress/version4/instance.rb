@@ -241,4 +241,6 @@ module Net
       def string_for_octets(octets)
         octets.join(DELIMITER)
       end
-    end; end; end
+    end
+  end
+end

@@ -9,9 +9,9 @@ module Net
     class Version6
       include ::Net::IPAddress
 
-      FULL_MASK = 16.times.map { 255 }.freeze
+      FULL_MASK = Array.new(16) { 255 }.freeze
       DELIMITER = ':'.freeze
-      SQUEEZ    = '::'.freeze
+      SQUEEZE = '::'.freeze
 
       class << self
         # @param [128]
@@ -54,7 +54,7 @@ module Net
 
             PRIFIXIES[prflen]
           when //
-
+            # noop
           end
         end
 
@@ -101,6 +101,7 @@ module Net
 
         def parse_linklocal(str)
           if /\A(%\S+?)\z/.match?(str)
+            # noop
           end
         end
 
@@ -114,6 +115,7 @@ module Net
         # @todo
         def parse_ipv4mapped(str)
           if /\A(?:::|(?:0:){5})f{4}#{Version4::OCTETS_PATTERN}\z/o.match?(str)
+            # noop
           end
         end
 
@@ -121,6 +123,7 @@ module Net
         # RFC3513
         def parse_ipv4compatible(str)
           if /\A(?:::|(?:0:){6})#{Version4::OCTETS_PATTERN}\z/o.match?(str)
+            # noop
           end
         end
       end

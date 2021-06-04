@@ -812,9 +812,14 @@ Layout/CaseIndentation:
 Naming/MethodName:
   Enabled: true
   EnforcedStyle: 'snake_case'
+  Exclude:
+    - 'lib/net/ipaddress.rb'
 
 Naming/FileName:
   Enabled: true
+  Exclude:
+    - 'examples/**/*'
+    - '**.md'
 
 Naming/ConstantName:
   Enabled: true
@@ -911,6 +916,11 @@ Lint/ConstantResolution:
 
 Lint/EmptyInPattern:
   Enabled: true
+
+Lint/DuplicateBranch:
+  Enabled: true
+  Exclude:
+    - '**/*version6.rb'
 
 Rubycw/Rubycw:
   Enabled: true

@@ -65,4 +65,6 @@ module Net
              .scan(/[01]{8}/).map { |s| s.to_i(2) }
         end
       end
-    end; end; end
+    end
+  end
+end

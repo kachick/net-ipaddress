@@ -45,8 +45,6 @@ module Net
       _bits.dup
     end
 
-    alias_method :netmask, :mask_octets
-
     def ipaddress?
       true
     end
@@ -109,8 +107,8 @@ module Net
 
     # @param contain_network [Boolean]
     # @return [self]
-    def each_host(contain_network=false, &block)
-      return to_enum(__callee__, contain_network) { host_counts + (contain_network ? 1 : 0) } unless block
+    def each_host(contain_network: false, &block)
+      return to_enum(__callee__, contain_network: contain_network) { host_counts + (contain_network ? 1 : 0) } unless block
 
       range = (contain_network ? network : network.next)...last
       range.__send__(:each, &block)
@@ -149,4 +147,5 @@ module Net
       to_i
       nil
     end
-  end; end
+  end
+end

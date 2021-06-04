@@ -114,7 +114,7 @@ Declare.describe do
           truthy list.last == list.sample.broadcast
         end
 
-        The addr.each_address {} do
+        The(addr.each_address {nil}) do
           equal addr
         end
 
@@ -133,7 +133,7 @@ Declare.describe do
           truthy list.last.inspect == '#<IPv4: 192.168.1.14/255.255.255.240(28)>'
         end
 
-        The addr.each_host {} do
+        The(addr.each_host {nil}) do
           equal addr
         end
 

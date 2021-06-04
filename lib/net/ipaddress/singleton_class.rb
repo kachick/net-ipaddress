@@ -68,4 +68,5 @@ module Net
         raise InvalidAddress
       end
     end
-  end; end
+  end
+end

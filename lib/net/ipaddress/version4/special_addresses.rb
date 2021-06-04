@@ -25,4 +25,6 @@ module Net
       ISP = new([100, 64, 0, 0], PREFIXIES[10])
 
       IETF = new([192, 0, 0, 0], PREFIXIES[24])
-    end; end; end
+    end
+  end
+end

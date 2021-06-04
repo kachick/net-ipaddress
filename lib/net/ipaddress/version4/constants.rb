@@ -53,4 +53,6 @@ module Net
       }.freeze
 
       FULL_MASK = PREFIXIES.last
-    end; end; end
+    end
+  end
+end

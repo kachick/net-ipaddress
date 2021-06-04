@@ -10,7 +10,8 @@ module Net
     end
 
     V4 = Version4
-  end; end
+  end
+end
 
 require_relative 'version4/constants'
 require_relative 'version4/singleton_class'

@@ -23,15 +23,14 @@ Usage
 
 ```ruby
 require 'net/ipaddress'
-include Net
 ```
 
 ### Basic
 
 ```ruby
-ip1 = IPAddress('192.168.1.1/24')
-ip2 = IPAddress('192.168.1.10/24')
-ip3 = IPAddress('192.168.0.0/16')
+ip1 = Net::IPAddress('192.168.1.1/24')
+ip2 = Net::IPAddress('192.168.1.10/24')
+ip3 = Net::IPAddress('192.168.0.0/16')
 ip1.segment? ip2 #=> true
 ip2.segment? ip1 #=> true
 ip1.segment? ip3 #=> false
@@ -44,7 +43,7 @@ ip3.cover? ip1   #=> true
 ```ruby
 require 'net/ipaddress/ext/ipaddr'
 
-IPAddr.new('192.168.1.1/24') == IPAddress('192.168.1.1/24').network #=> true
+IPAddr.new('192.168.1.1/24') == Net::IPAddress('192.168.1.1/24').network #=> true
 ```
 
 Requirements
@@ -71,6 +70,6 @@ Link
 License
 -------
 
-The MIT X11 License  
-Copyright (c) 2012 Kenichi Kamiya  
+The MIT X11 License
+Copyright (c) 2012 Kenichi Kamiya
 See MIT-LICENSE for further details.
