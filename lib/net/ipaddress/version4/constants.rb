@@ -4,9 +4,9 @@
 module Net
   module IPAddress
     class Version4
-      DELIMITER = '.'.freeze
+      DELIMITER = '.'
 
-      # It's clearly to build below octets pattern with Tanaka Akira Specal.
+      # It's clearly to build below octets pattern with Tanaka Akira Special.
       # e.g. /(?:(?<octet>25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}\g<octet>/
       # But this way occur a error, for after building other patterns with this Regexp object :<
       octet_rxp_str = '(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)'
@@ -35,7 +35,7 @@ module Net
       #   [255, 255, 255, 0],     # 24
       #   ....,                   # 24 ~ 31
       #   [255, 255, 255, 255]]   # 32(last)
-      PREFIXIES = [[0, 0, 0, 0].freeze].tap { |ret|
+      PREFIXES = [[0, 0, 0, 0].freeze].tap { |ret|
         valid_octets = [128, 192, 224, 240, 248, 252, 254, 255].freeze
         base_octets = ret.first.dup
 
@@ -52,7 +52,7 @@ module Net
         raise 'must not happen' unless ret.length == 33
       }.freeze
 
-      FULL_MASK = PREFIXIES.last
+      FULL_MASK = PREFIXES.last
     end
   end
 end

@@ -4,7 +4,7 @@
 # Copyright (c) 2012 Kenichi Kamiya
 #
 # net-ipaddress
-#   Relieve you of annoying task with IP Addreses
+#   Relieve you of annoying task with IP Address
 
 require_relative 'ipaddress/version'
 
@@ -14,7 +14,7 @@ module Net
 
     class InvalidAddress < StandardError; end
 
-    MASK_SEPARATOR = '/'.freeze
+    MASK_SEPARATOR = '/'
   end
 
   module_function

@@ -18,7 +18,7 @@ module Net
                    when $~[:mask]
                      octets_for_string($~[:mask])
                    when $~[:prefix_length]
-                     PREFIXIES[$~[:prefix_length].to_i]
+                     PREFIXES[$~[:prefix_length].to_i]
                    else
                      FULL_MASK
                    end

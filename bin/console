@@ -6,6 +6,6 @@ require 'irb'
 require 'irb/completion'
 require 'irb/power_assert'
 
-require_relative '../lib/my_new_library'
+require_relative '../lib/net/ipaddress'
 
 IRB.start

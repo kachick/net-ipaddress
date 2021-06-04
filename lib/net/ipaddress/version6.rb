@@ -10,11 +10,11 @@ module Net
       include ::Net::IPAddress
 
       FULL_MASK = Array.new(16) { 255 }.freeze
-      DELIMITER = ':'.freeze
-      SQUEEZE = '::'.freeze
+      DELIMITER = ':'
+      SQUEEZE = '::'
 
       class << self
-        # @param [128]
+        # @return [128]
         def bit_length
           128
         end

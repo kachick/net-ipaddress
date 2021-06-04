@@ -62,7 +62,7 @@ module Net
 
       # true if mask is /0 ~ /32
       def cidr?
-        PREFIXIES.include?(@mask_octets)
+        PREFIXES.include?(@mask_octets)
       end
 
       # It is able to deal with "classfull"
@@ -87,12 +87,12 @@ module Net
 
       # RFC3171
       def class_d?
-        new([224, 0, 0, 0], PREFIXIES[4]).cover?(self)
+        new([224, 0, 0, 0], PREFIXES[4]).cover?(self)
       end
 
       # RFC1112
       def class_e?
-        new([240, 0, 0, 0], PREFIXIES[4]).cover?(self)
+        new([240, 0, 0, 0], PREFIXES[4]).cover?(self)
       end
 
       def cover?(other)
@@ -133,7 +133,7 @@ module Net
 
       # @return [Fixnum]
       def prefix_length
-        if index = PREFIXIES.index(@mask_octets)
+        if index = PREFIXES.index(@mask_octets)
           index
         else
           raise TypeError, 'this address is not under any prefix masks'
