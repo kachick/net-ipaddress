@@ -1,17 +1,17 @@
 # coding: us-ascii
+# frozen_string_literal: true
+
 # Copyright (c) 2012 Kenichi Kamiya
 
-module Net; module IPAddress
+module Net
+  module IPAddress
+    class Version4
+      include ::Net::IPAddress
+    end
 
-  class Version4
-    
-    include ::Net::IPAddress
-
+    V4 = Version4
   end
-  
-  V4 = Version4
-  
-end; end
+end
 
 require_relative 'version4/constants'
 require_relative 'version4/singleton_class'
