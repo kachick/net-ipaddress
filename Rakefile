@@ -1,12 +1,58 @@
-#!/usr/bin/env rake
-# coding: us-ascii
+# frozen_string_literal: true
 
 require 'bundler/gem_tasks'
 
-task default: [:declare]
+require 'rake/testtask'
 
-task :declare do
-  require_relative 'test/declare_ipv4'
-  require_relative 'declare_ext_ipaddr'
+begin
+  require 'rubocop/rake_task'
+rescue LoadError
+  puts 'can not use rubocop in this environment'
+else
+  RuboCop::RakeTask.new
 end
 
+task default: [:test_behaviors]
+
+task test_behaviors: [:test]
+
+desc 'Simulate CI results in local machine as possible'
+multitask simulate_ci: [:test_behaviors, :validate_signatures, :rubocop]
+
+Rake::TestTask.new(:test) do |tt|
+  tt.pattern = 'test/**/test_*.rb'
+  tt.warning = true
+end
+
+desc 'Signature check, it means `rbs` and `YARD` syntax correctness'
+multitask validate_signatures: [:'signature:validate_yard']
+
+namespace :signature do
+  desc 'Generate YARD docs for the syntax check'
+  task :validate_yard do
+    sh "bundle exec yard --fail-on-warning #{'--no-progress' if ENV['CI']}"
+  end
+end
+
+desc 'Generate YARD docs'
+task :yard do
+  sh 'bundle exec yard --fail-on-warning'
+end
+
+FileList['benchmark/*.rb'].each do |path|
+  desc "Rough benchmark for #{File.basename(path)}"
+  task path do
+    ruby path
+  end
+end
+
+desc 'Prevent miss packaging!'
+task :view_packaging_files do
+  sh 'rm -rf ./pkg'
+  sh 'rake build'
+  cd 'pkg' do
+    sh 'gem unpack *.gem'
+    sh 'tree -I *\.gem'
+  end
+  sh 'rm -rf ./pkg'
+end
