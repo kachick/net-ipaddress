@@ -7,7 +7,7 @@ ipaddress utilities (Currently supporting only for V4)
 
 ## Usage
 
-Require Ruby 2.6 or later
+Require Ruby 2.7 or later
 
 Add below code into your Gemfile
 
