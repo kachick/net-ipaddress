@@ -34,11 +34,6 @@ namespace :signature do
   end
 end
 
-desc 'Generate YARD docs'
-task :yard do
-  sh 'bundle exec yard --fail-on-warning'
-end
-
 FileList['benchmark/*.rb'].each do |path|
   desc "Rough benchmark for #{File.basename(path)}"
   task path do
