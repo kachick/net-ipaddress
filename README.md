@@ -1,7 +1,7 @@
 # net-ipaddress
 
 ![Build Status](https://github.com/kachick/net-ipaddress/actions/workflows/test_behaviors.yml/badge.svg?branch=main)
-[![Gem Version](https://badge.fury.io/rb/net-ipaddress.png)](http://badge.fury.io/rb/net-ipaddress)
+[![Gem Version](https://badge.fury.io/rb/net-ipaddress.svg)](http://badge.fury.io/rb/net-ipaddress)
 
 ipaddress utilities (Currently supporting only for V4)
 
